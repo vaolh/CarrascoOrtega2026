@@ -22,7 +22,7 @@ all: inpc enigh poverty
 	rm -rf ../temp
 
 # INPC deflator data
-inpc: ../output/inpc.csv
+inpc: ../output/inpc.json
 
 # ENIGH survey data
 enigh: $(addprefix ../output/, \
@@ -50,12 +50,8 @@ poverty: $(addprefix ../output/, \
 # INPC DEFLATOR RULES
 # =============================================================================
 
-../input/inpc.json: | ../input
-	curl -L -o ../input/inpc.json $(API_URL)
-
-../output/inpc.csv: ../input/inpc.json | ../output
-	# Add processing step here if needed
-	cp ../input/inpc.json ../output/inpc.csv
+../output/inpc.json: | ../output
+	curl -L -o ../output/inpc.json $(API_URL)
 
 # =============================================================================
 # ENIGH SURVEY RULES
