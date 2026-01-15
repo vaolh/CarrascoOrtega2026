@@ -9,11 +9,11 @@ CSV_FILES := ../input/inpc.csv
 ../output/enighdata.dta: enighdata.do $(INPUT_FILES) $(CSV_FILES) | ../output
 	stata-mp -e enighdata.do
 
-../input/%.dta: ../../download/output/%.dta | ../input
+../input/%.dta: ../../raw/output/%.dta | ../input
 	@if [ ! -e ../input ]; then mkdir -p ../input; fi
 	@if [ ! -e $@ ]; then ln -sf $< $@; fi
 
-../input/%.csv: ../../deflators/output/%.csv | ../input
+../input/%.json: ../../raw/output/%.json | ../input
 	@if [ ! -e ../input ]; then mkdir -p ../input; fi
 	@if [ ! -e $@ ]; then ln -sf $< $@; fi
 
